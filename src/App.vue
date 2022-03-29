@@ -1,7 +1,7 @@
 <template>
   <div class="p-20">
     <button class="btn btn-primary" @click="show = !show">Cliquez !</button>
-    <Transition @enter="onEnter" appear name="fade">
+    <Transition name="mon-animation" appear>
       <p v-if="show">
         Principes fertur et exitiale aliquando oblato factitarunt quod
         propositum quod illo ob illo numquam obstinatum obstinatum quoque
@@ -22,41 +22,27 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-function onEnter() {
-  console.log('test');
-}
-
 const show = ref(true);
 </script>
 
 <style lang="scss">
 @import './assets/scss/base.scss';
 
-// .fade-enter-from,
-// .fade-leave-to {
-//   opacity: 0;
-// }
-
-// .fade-enter-to,
-// .fade-leave-from {
-//   opacity: 1;
-// }
-
-// .fade-leave-active,
-.fade-enter-active {
-  // transition: all 2s;
-  animation: smallToBig 1s;
-}
-
-@keyframes smallToBig {
+@keyframes mon-animation {
   0% {
-    opacity: 0;
-    font-size: 5px;
+    transform: scale(0);
   }
-
+  50% {
+    transform: scale(0.5, 1.5);
+  }
   100% {
-    opacity: 1;
-    font-size: 32px;
+    transform: scale(1);
   }
+}
+.mon-animation-enter-active {
+  animation: mon-animation 0.5s;
+}
+.mon-animation-leave-active {
+  animation: mon-animation 0.5s reverse;
 }
 </style>
